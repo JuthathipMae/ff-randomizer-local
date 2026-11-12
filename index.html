@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0e">
+  <title>FF RANDOM — Free Fire Randomizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="FF Random home"><span class="brand-mark">FF</span><span>RANDOM<span class="brand-dot">.</span><small>FREE FIRE LOADOUT & MAP GENERATOR</small></span></a>
+    <div class="top-actions">
+      <span class="live-indicator"><i></i><span id="dataStatus">กำลังโหลดข้อมูล</span></span>
+      <button class="icon-btn" id="refreshBtn" title="โหลดข้อมูลใหม่" aria-label="โหลดข้อมูลใหม่">↻</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> YOUR LUCK. YOUR LOADOUT.</p>
+        <h1>สุ่มไอเทม<br><em>FREE FIRE</em></h1>
+        <p class="hero-desc">สุ่มตัวละคร ปืนชาร์จ/ปืนไกล สัตว์เลี้ยง และแผนที่สำหรับลงสนามครั้งต่อไป</p>
+        <div class="hero-tags"><span>CHARACTER</span><span>WEAPON (CLOSE / LONG)</span><span>PET</span><span>MAP</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-ring"></div><div class="hero-star">✦</div>
+        <div class="hero-word">BOOYAH!</div>
+        <div class="hero-emblem">FF<span>R</span></div>
+      </div>
+    </section>
+
+    <section class="section-heading">
+      <div><p class="eyebrow">CHOOSE YOUR DESTINY</p><h2>เลือกหมวดที่ต้องการสุ่ม</h2></div>
+      <div class="heading-note">กดสุ่มเพื่อรับผลลัพธ์แบบไม่ซ้ำในรอบปัจจุบัน</div>
+    </section>
+
+    <nav class="tabs" aria-label="หมวดสุ่ม">
+      <button class="tab active" data-category="characters"><span>♟</span> ตัวละคร <small id="count-characters">—</small></button>
+      <button class="tab" data-category="weapons"><span>⌁</span> ปืน <small id="count-weapons">—</small></button>
+      <button class="tab" data-category="pets"><span>♧</span> สัตว์เลี้ยง <small id="count-pets">—</small></button>
+      <button class="tab" data-category="maps"><span>❖</span> แมพ <small id="count-maps">—</small></button>
+    </nav>
+
+    <section class="randomizer">
+      <div class="randomizer-main">
+        <div class="result-topline"><span class="result-label">YOUR RANDOM DROP</span><span class="rarity" id="rarityBadge">READY</span></div>
+        <div class="result-stage" id="resultStage">
+          <div class="stage-grid"></div><div class="stage-glow"></div>
+
+          <div class="result-placeholder" id="resultPlaceholder">
+            <span>?</span>
+            <b>พร้อมสุ่มหรือยัง?</b>
+            <small>กดปุ่มด้านล่างเพื่อเริ่มสุ่ม</small>
+          </div>
+
+          <div class="text-result-card" id="itemInfo" hidden>
+            <div class="result-emblem" id="itemEmblem">♟</div>
+            <p class="result-kicker" id="itemType">CHARACTER</p>
+            <h3 class="result-title" id="itemName">—</h3>
+            <p class="result-desc" id="itemDesc">—</p>
+            <div class="item-meta">
+              <span id="itemTag">TYPE: —</span>
+              <span>MODE: NO-API LOCAL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roll-controls">
+          <button class="roll-btn" id="rollBtn"><span class="roll-icon">✦</span><span>สุ่มเลย</span><b>RANDOM</b></button>
+          <button class="secondary-btn" id="rollAllBtn">สุ่มครบชุด (ตัวละคร+ปืน+สัตว์+แมพ) <span>→</span></button>
+        </div>
+        <p class="roll-hint">ผลการสุ่มเป็นการสุ่มเพื่อความสนุก ไม่เกี่ยวข้องกับระบบกาชาหรือไอเทมในบัญชีเกมจริง</p>
+      </div>
+
+      <aside class="side-panel">
+        <div class="panel-title"><span>✧</span><div><b>RANDOM SETTINGS</b><small>ตั้งค่าการสุ่ม</small></div></div>
+
+        <label class="setting-label" for="weaponRangeFilter">ระยะของปืน (ใช้เมื่อสุ่มปืน)</label>
+        <select id="weaponRangeFilter">
+          <option value="all">ปืนทั้งหมด (ชาร์จ + ไกล)</option>
+          <option value="close">ปืนชาร์จ / ระยะใกล้ (SMG, ลูกซอง, ปืนพก)</option>
+          <option value="long">ปืนไกล / ระยะกลาง-ไกล (AR, สไนเปอร์, กลหนัก)</option>
+        </select>
+
+        <label class="setting-label" for="rarityFilter" style="margin-top:14px;">ระดับความหายาก / ประเภท</label>
+        <select id="rarityFilter">
+          <option value="all">ทั้งหมด</option>
+          <option value="legendary">Legendary / Active</option>
+          <option value="epic">Epic / Passive</option>
+          <option value="rare">Rare</option>
+          <option value="common">Common</option>
+        </select>
+
+        <label class="toggle-row">
+          <span><b>ไม่สุ่มซ้ำ</b><small>ตัดรายการที่เคยออกในหมวดนี้</small></span>
+          <input type="checkbox" id="noRepeat" checked><i></i>
+        </label>
+
+        <div class="side-divider"></div>
+        <div class="stats-grid">
+          <div><strong id="totalCount">0</strong><small>ITEMS LOADED</small></div>
+          <div><strong id="historyCount">0</strong><small>YOUR DRAWS</small></div>
+        </div>
+        <button class="text-btn" id="resetBtn">↺ รีเซ็ตประวัติการสุ่มซ้ำ</button>
+        <div class="api-note"><span>ⓘ</span><p>แสดงผลแบบข้อความและการ์ดไอคอนโดยตรง ไม่ใช้รูปภาพภายนอกและไม่ใช้ API</p></div>
+      </aside>
+    </section>
+
+    <section class="history-section">
+      <div class="section-heading compact"><div><p class="eyebrow">RECENT DROPS</p><h2>ประวัติการสุ่ม</h2></div><button class="text-btn" id="clearHistoryBtn">ล้างประวัติ</button></div>
+      <div class="history-list" id="historyList"><div class="empty-history">ยังไม่มีประวัติ ลองสุ่มรายการแรกของคุณ</div></div>
+    </section>
+
+    <section class="squad-section" id="squadSection" hidden>
+      <div class="section-heading compact"><div><p class="eyebrow">YOUR NEXT MATCH</p><h2>ชุดลงสนามที่สุ่มได้</h2></div><button class="secondary-btn" id="rerollSquadBtn">สุ่มชุดใหม่ ↻</button></div>
+      <div class="squad-grid" id="squadGrid"></div>
+    </section>
+
+    <footer><div class="footer-brand">FF RANDOM<span>.</span></div><p>Fan-made randomizer for entertainment. Not affiliated with Garena or Free Fire.</p><p>Game names belong to their respective owners.</p></footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
