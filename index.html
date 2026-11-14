@@ -8,7 +8,7 @@
   <!-- Typography: Prompt -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -58,7 +58,7 @@
         <p class="eyebrow">YOUR LUCK • YOUR LOADOUT</p>
         <h1>ระบบสุ่มไอเทม <span>FREE FIRE</span></h1>
         <p class="hero-desc">
-          สุ่มตัวละคร จัดคอมโบสกิล 4 ช่อง อาวุธปืนชาร์จ/ปืนไกล สัตว์เลี้ยง และแผนที่สำหรับลงสมรภูมิ
+          สุ่มตัวละคร จัดคอมโบสกิล 4 ช่อง อาวุธปืน สัตว์เลี้ยงคู่หู สำหรับลงสมรภูมิ
         </p>
       </div>
 
@@ -76,7 +76,7 @@
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           </svg>
           <span>สุ่มเซ็ตพร้อมลงสนาม</span>
-          <span class="mode-badge">4 ตัว + 2 ปืน + 1 สัตว์</span>
+          <span class="mode-badge">4 ตัวละคร + 2 อาวุธ + 1 สัตว์เลี้ยง</span>
         </button>
       </div>
     </section>
@@ -206,7 +206,7 @@
                 <p class="section-tag">TACTICAL FULL LOADOUT</p>
                 <h2>เซ็ตพร้อมลงสนาม</h2>
                 <small class="squad-desc">
-                  คอมโบสกิล 4 ตัวละคร (Active 1 + Passive 3) • ปืนไกล 1 • ปืนใกล้ 1 • สัตว์เลี้ยง 1
+                  คอมโบสกิล 4 ตัวละคร (Active 1 + Passive 3) • อาวุธ 2 ชิ้น (อาวุธหลัก + อาวุธรอง) • สัตว์เลี้ยง 1 ตัว
                 </small>
               </div>
               <button class="primary-btn pulse-glow" id="spinSquadBtn" type="button">
@@ -329,30 +329,23 @@
             </div>
           </div>
 
-          <!-- Weapon Range Filter Pills -->
-          <div class="filter-group">
-            <label class="filter-label">ระยะ / คุณลักษณะอาวุธ</label>
-            <div class="range-pills" id="rangePills">
-              <button class="range-pill active" type="button" data-range="all">ทั้งหมด</button>
-              <button class="range-pill" type="button" data-range="close">ปืนใกล้</button>
-              <button class="range-pill" type="button" data-range="long">ปืนไกล</button>
-              <button class="range-pill" type="button" data-range="charge">ปืนชาร์จ</button>
-            </div>
-          </div>
-
-          <!-- Weapon Types Filter Multi-select -->
+          <!-- Weapon Types Filter Multi-select Chips -->
           <div class="filter-group">
             <div class="filter-header-row">
-              <label class="filter-label">ประเภทอาวุธ (เลือกได้อิสระ)</label>
+              <label class="filter-label">ประเภทอาวุธ (เลือกได้หลายประเภท)</label>
               <div class="filter-quick-actions">
-                <button class="link-btn" id="selectAllTypesBtn" type="button">เลือกทั้งหมด</button>
-                <span class="sep">|</span>
-                <button class="link-btn" id="clearAllTypesBtn" type="button">ล้างหมด</button>
+                <button class="toggle-all-chip active" id="toggleAllTypesBtn" type="button" title="เลือกหรือล้างทั้งหมดในคลิกเดียว">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span id="toggleAllTypesText">ปืนทั้งหมด (Select All)</span>
+                </button>
               </div>
             </div>
 
-            <div class="weapon-types-grid" id="weaponTypesGrid">
-              <!-- Checkboxes dynamically generated in app.js -->
+            <!-- 9 Category Toggle Chips Container -->
+            <div class="weapon-chips-grid" id="weaponTypesGrid">
+              <!-- Dynamically generated in app.js -->
             </div>
           </div>
 
